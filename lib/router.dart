@@ -37,7 +37,32 @@ abstract class AppRouter {
     },
     routes: <RouteBase>[
       GoRoute(path: splash, builder: (context, state) => SplashScreen()),
-      GoRoute(path: home, builder: (context, state) => HomeScreen()),
+      GoRoute(
+        path: home,
+        pageBuilder: (context, state) {
+          if (state.extra.runtimeType == bool && (state.extra as bool)) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: HomeScreen(),
+              transitionDuration: Duration(milliseconds: 500),
+              transitionsBuilder: (
+                context,
+                animation,
+                secondaryAnimation,
+                child,
+              ) {
+                return SlideTransition(
+                  position: animation.drive(
+                    Tween<Offset>(begin: Offset(-1, 0), end: Offset(0, 0)),
+                  ),
+                  child: child,
+                );
+              },
+            );
+          }
+          return MaterialPage(child: HomeScreen());
+        },
+      ),
       GoRoute(path: notFound, builder: (context, state) => NotFoundScreen()),
       GoRoute(
         path: checkout,

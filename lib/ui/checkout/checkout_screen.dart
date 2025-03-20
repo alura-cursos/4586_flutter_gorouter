@@ -20,7 +20,7 @@ class CheckoutScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            context.go(AppRouter.home);
+            context.go(AppRouter.home, extra: true);
           },
           icon: Icon(Icons.arrow_back),
         ),
