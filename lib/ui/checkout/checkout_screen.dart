@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gorouter/_core/bag_provider.dart';
 import 'package:flutter_gorouter/ui/checkout/widgets/checkout_dish_widget.dart';
 import 'package:flutter_gorouter/ui/checkout/widgets/checkout_widget.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/dish.dart';
-import '../../router.dart';
 import '../_core/app_colors.dart';
 
 class CheckoutScreen extends StatelessWidget {
@@ -18,12 +16,6 @@ class CheckoutScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            context.go(AppRouter.home);
-          },
-          icon: Icon(Icons.arrow_back),
-        ),
         title: Text("Sacola"),
         actions: [
           TextButton(

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gorouter/_core/settings_provider.dart';
-import 'package:flutter_gorouter/router.dart';
 import 'package:flutter_gorouter/ui/_core/app_colors.dart';
 import 'package:flutter_gorouter/ui/_core/dimensions.dart';
-import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_gorouter/ui/home/home_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -72,7 +69,13 @@ class SplashScreen extends StatelessWidget {
   }
 
   _onBoraButtonPressed(BuildContext context) {
-    context.read<SettingsProvider>().isUserAuthenticated = true;
-    context.go(AppRouter.home);
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return HomeScreen();
+        },
+      ),
+    );
   }
 }

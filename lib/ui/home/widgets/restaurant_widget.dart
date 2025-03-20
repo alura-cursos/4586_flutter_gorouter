@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gorouter/models/restaurant.dart';
-import 'package:flutter_gorouter/router.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_gorouter/ui/restaurant/restaurant_screen.dart';
 
 class RestaurantWidget extends StatelessWidget {
   final Restaurant restaurant;
@@ -40,7 +39,13 @@ class RestaurantWidget extends StatelessWidget {
   }
 
   _onRestaurantPressed(BuildContext context) {
-    // context.push(AppRouter.restaurant, extra: restaurant);
-    context.go("${AppRouter.restaurant}/${restaurant.id}");
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return RestaurantScreen(restaurant: restaurant);
+        },
+      ),
+    );
   }
 }

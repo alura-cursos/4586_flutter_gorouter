@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter_gorouter/_core/bag_provider.dart';
-import 'package:flutter_gorouter/router.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_gorouter/ui/checkout/checkout_screen.dart';
 import 'package:provider/provider.dart';
 
-AppBar getAppBar({
-  required BuildContext context,
-  String? title,
-  Function? onBackPressed,
-}) {
+AppBar getAppBar({required BuildContext context, String? title}) {
   BagProvider bagProvider = Provider.of<BagProvider>(context);
 
   return AppBar(
-    leading:
-        (onBackPressed != null)
-            ? IconButton(
-              onPressed: () => onBackPressed(),
-              icon: Icon(Icons.arrow_back),
-            )
-            : null,
     title: title != null ? Text(title) : null,
     actions: [
       badges.Badge(
@@ -36,7 +24,14 @@ AppBar getAppBar({
         ),
         child: IconButton(
           onPressed: () {
-            context.go(AppRouter.checkout);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return CheckoutScreen();
+                },
+              ),
+            );
           },
           icon: Icon(Icons.shopping_basket),
         ),

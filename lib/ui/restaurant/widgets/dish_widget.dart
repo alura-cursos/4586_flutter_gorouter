@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gorouter/ui/_core/app_colors.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_gorouter/ui/dish/dish_screen.dart';
 
 import '../../../models/dish.dart';
-import '../../../router.dart';
 
 class DishWidget extends StatelessWidget {
   final Dish dish;
-  final String restaurantId;
-  const DishWidget({super.key, required this.dish, required this.restaurantId});
+  final String restaurantName;
+  const DishWidget({
+    super.key,
+    required this.dish,
+    required this.restaurantName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +67,13 @@ class DishWidget extends StatelessWidget {
   }
 
   void _onDishPressed(BuildContext context) {
-    context.go(
-      "${AppRouter.restaurant}/$restaurantId${AppRouter.dish}/${dish.id}",
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return DishScreen(dish: dish, restaurantName: restaurantName);
+        },
+      ),
     );
   }
 }

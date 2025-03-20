@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gorouter/router.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_gorouter/ui/home/home_screen.dart';
 
 class NotFoundScreen extends StatelessWidget {
   const NotFoundScreen({super.key});
@@ -11,7 +10,10 @@ class NotFoundScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            context.go(AppRouter.home);
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );
           },
           icon: Icon(Icons.arrow_back),
         ),
