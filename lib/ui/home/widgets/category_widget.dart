@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_gorouter/models/category.dart';
+import 'package:flutter_gorouter/ui/_core/app_colors.dart';
+
+class CategoryWidget extends StatelessWidget {
+  final CategoryModel category;
+  final bool isSelected;
+  const CategoryWidget({
+    super.key,
+    required this.category,
+    required this.isSelected,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100,
+      height: 100,
+      padding: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color:
+            (isSelected) ? AppColors.mainColor : AppColors.backgroundLightColor,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        spacing: 6,
+        children: [
+          Image.asset(category.imagePath, height: 48),
+          Text(
+            category.name,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+        ],
+      ),
+    );
+  }
+}
